@@ -1,6 +1,4 @@
-console.log('Yet another Hello world');
-
-var map = null;
+let map = null;
 
 placesOfInterest = [
   { name: 'Charme da paulista', lat: -23.562172, lng: -46.655794 },
@@ -18,7 +16,8 @@ placesOfInterest = [
 ];
 
 const customIconYellow = {
-  path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
+  path:
+    'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
   fillColor: '#F7B217',
   fillOpacity: 0.98,
   scale: 0.98,
@@ -27,53 +26,49 @@ const customIconYellow = {
 };
 
 const customIconWhite = {
-    path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
-    fillColor: '#FFFF',
-    fillOpacity: 0.98,
-    scale: 0.98,
-    strokeColor: '#666666',
-    strokeWeight: 3
-  };
-  
+  path:
+    'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
+  fillColor: '#FFFF',
+  fillOpacity: 0.98,
+  scale: 0.98,
+  strokeColor: '#666666',
+  strokeWeight: 3
+};
 
-function addMarker(marker) {  
-    marker = new google.maps.Marker({
+const addMarker = ( marker ) => {  
+  marker = new google.maps.Marker({
     map: map,
-    position: new google.maps.LatLng(marker.lat, marker.lng),
+    position: new google.maps.LatLng( marker.lat, marker.lng ),
     icon: customIconYellow,
     animation: google.maps.Animation.DROP,
-    //title: marker.name
+    title: marker.name
   });
-  teste(marker);
+  modifyMarkerForWhite( marker, marker.title );
 }
 
-//-----------------------------
-function teste2(infowindow) {
-  infowindow = new google.maps.InfoWindow({
-    position: latlngPos,
-    maxWidth: 200,
-    content: '<h3>ola</h3>'
+const modifyMarkerForWhite = ( marker, namePlace ) => { 
+  google.maps.event.addListener( marker, 'click', function() {
+    marker.setIcon( customIconWhite );
+    windowNamePlace( marker, namePlace );
   });
 }
 
-//open onclick
-function teste(marker) {
-  google.maps.event.addListener(marker, 'click', function() {
-    marker.setIcon(customIconWhite);    
-    //teste2(infowindow.open(map));
-  });
-}
+ const windowNamePlace = ( markerWindow, namePlace ) => { 
+    let infowindow = new google.maps.InfoWindow({
+    content: namePlace,
+  }); 
+  infowindow.open( map, markerWindow );
+} 
 
-//-----------------------------
 
 function initMap() {
-  var mapOptions = {
-    center: new google.maps.LatLng(-23.562172, -46.655794),
+  const mapOptions = {
+    center: new google.maps.LatLng( -23.562172, -46.655794 ),
     gestureHandling: 'greedy',
     zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControlOptions: {
-      mapTypeIds: [google.maps.MapTypeId.ROADMAP]
+      mapTypeIds: [ google.maps.MapTypeId.ROADMAP ]
     },
     disableDefaultUI: true,
     scaleControl: true,
@@ -83,10 +78,10 @@ function initMap() {
     }
   };
 
-  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  map = new google.maps.Map(document.getElementById( 'map' ), mapOptions);
 
   //Add all markers in the map
-  const placesMarker = placesOfInterest.map((place, idx) => {
-    addMarker(placesOfInterest[idx]);
+  const placesMarker = placesOfInterest.map(( place, idx ) => {
+    addMarker( placesOfInterest[ idx ] );
   });
 }
