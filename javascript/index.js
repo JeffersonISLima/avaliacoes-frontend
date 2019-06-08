@@ -46,8 +46,8 @@ const addMarker = ( marker ) => {
   modifyMarkerForWhite( marker, marker.title );
 }
 
-const modifyMarkerForWhite = ( marker, namePlace ) => { 
-  google.maps.event.addListener( marker, 'click', function() {
+const modifyMarkerForWhite = ( marker, namePlace ) => {   
+  google.maps.event.addListener( marker, 'click', function() {     
     marker.setIcon( customIconWhite );
     windowNamePlace( marker, namePlace );
   });
@@ -57,9 +57,8 @@ const modifyMarkerForWhite = ( marker, namePlace ) => {
     let infowindow = new google.maps.InfoWindow({
     content: namePlace,
   }); 
-  infowindow.open( map, markerWindow );
+  infowindow.open( map, markerWindow );   
 } 
-
 
 function initMap() {
   const mapOptions = {
@@ -82,6 +81,10 @@ function initMap() {
 
   //Add all markers in the map
   const placesMarker = placesOfInterest.map(( place, idx ) => {
-    addMarker( placesOfInterest[ idx ] );
+    return addMarker( placesOfInterest[ idx ] );
   });
 }
+
+
+
+
