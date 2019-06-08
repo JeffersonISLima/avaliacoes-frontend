@@ -37,71 +37,116 @@ const customIconWhite = {
   strokeWeight: 3
 };
 
-const addMarker = ( marker ) => {  
+const addMarker = (marker) => {
   marker = new google.maps.Marker({
     map: map,
-    position: new google.maps.LatLng( marker.lat, marker.lng ),
+    position: new google.maps.LatLng(marker.lat, marker.lng),
     icon: customIconYellow,
     animation: google.maps.Animation.DROP,
     title: marker.name
   });
-  modifyMarkerForWhite( marker, marker.title );
-}
+  modifyMarkerForWhite(marker, marker.title);
+};
 
-const modifyMarkerForWhite = ( marker, namePlace ) => {   
-  google.maps.event.addListener( marker, 'click', function() {
-    //Reset all icons colors  
-    iconDefaultColor.push( marker );
-    iconDefaultColor.map( icon => {
-      return icon.setIcon( customIconYellow );
+const modifyMarkerForWhite = (marker, namePlace) => {
+  google.maps.event.addListener(marker, 'click', function() {
+    //Reset all icons colors
+    iconDefaultColor.push(marker);
+    iconDefaultColor.map(icon => {
+      return icon.setIcon(customIconYellow);
     });
-    marker.setIcon( customIconWhite );
-    windowNamePlace( marker, namePlace );
+    marker.setIcon(customIconWhite);
+    windowNamePlace(marker, namePlace);
   });
-}
+};
 
- const windowNamePlace = ( markerWindow, namePlace ) => { 
-    let infowindow = new google.maps.InfoWindow({
-    content: namePlace,
+const windowNamePlace = (markerWindow, namePlace) => {
+  let infowindow = new google.maps.InfoWindow({
+    content: namePlace
   });
   //Close all informations windows
-  infoWindows.push( infowindow );
-  infoWindows.map( window => {
-    return window.close();
+  infoWindows.push(infowindow);
+  infoWindows.map(window => {
+    window.close();
+  });
+
+  //Reset the icon color if information window is closed
+  infowindow.addListener('closeclick', function() {
+    markerWindow.setIcon(customIconYellow);
   });
 
   //Open a single information window
-  infowindow.open( map, markerWindow );    
-} 
+  infowindow.open(map, markerWindow);
+};
 
-function initMap() {
-  const mapOptions = {
-    center: new google.maps.LatLng( -23.562172, -46.655794 ),
-    gestureHandling: 'greedy',
-    zoom: 14,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    mapTypeControlOptions: {
-      mapTypeIds: [ google.maps.MapTypeId.ROADMAP ]
-    },
-    disableDefaultUI: true,
-    scaleControl: true,
-    zoomControl: true,
-    zoomControlOptions: {
-      style: google.maps.ZoomControlStyle.DEFAULT
-    }
-  };
+const getLocation = () => {
+  // Capturing geolocation of the web page visitor.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    alert('O seu navegador não suporta Geolocalização.');
+  }
 
-  map = new google.maps.Map(document.getElementById( 'map' ), mapOptions);
+  // Return function if the browser supports Geolocation.
+  function showPosition(position) {
+    // Saves the captured values into variables.
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const map = 0;
+    google.maps.event.addDomListener(window, 'load', initMap(latitude, longitude));
+  }
+};
+
+function initMap(latitude, longitude) {
+  let lat = latitude;
+  let lon = longitude;
+  
+  if (lat && lon) {
+    const mapOptions = {
+      zoom: 14,
+      center: {
+        lat: latitude,
+        lng: longitude
+      }
+    };
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    const marker = new google.maps.Marker({
+      icon: customIconYellow,
+      position: {
+        lat: latitude,
+        lng: longitude
+      },
+      map: map
+    });
+    const infowindow = new google.maps.InfoWindow({
+      content: '<p>Estou aqui:' + marker.getPosition() + '</p>'
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map, marker);
+    });
+  } else {
+    const mapOptions = {
+      zoom: 14,
+      center: new google.maps.LatLng(-23.562172, -46.655794),
+      gestureHandling: 'greedy',
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP]
+      },
+      disableDefaultUI: true,
+      scaleControl: true,
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.DEFAULT
+      }
+    };
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
 
   //Add all markers in the map
-  placesOfInterest.map(( place, idx ) => {
+  placesOfInterest.map((place, idx) => {
     return setTimeout(function() {
-      addMarker( placesOfInterest[ idx ] );
+      addMarker(placesOfInterest[idx]);
     }, idx * 500);
   });
 }
-
-
-
-
-
