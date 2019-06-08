@@ -1,4 +1,6 @@
 let map = null;
+let infoWindows = [];
+let iconDefaultColor = [];
 
 placesOfInterest = [
   { name: 'Charme da paulista', lat: -23.562172, lng: -46.655794 },
@@ -47,7 +49,12 @@ const addMarker = ( marker ) => {
 }
 
 const modifyMarkerForWhite = ( marker, namePlace ) => {   
-  google.maps.event.addListener( marker, 'click', function() {     
+  google.maps.event.addListener( marker, 'click', function() {
+    //Reset all icons colors  
+    iconDefaultColor.push( marker );
+    iconDefaultColor.map( icon => {
+      return icon.setIcon( customIconYellow );
+    });
     marker.setIcon( customIconWhite );
     windowNamePlace( marker, namePlace );
   });
@@ -56,8 +63,15 @@ const modifyMarkerForWhite = ( marker, namePlace ) => {
  const windowNamePlace = ( markerWindow, namePlace ) => { 
     let infowindow = new google.maps.InfoWindow({
     content: namePlace,
-  }); 
-  infowindow.open( map, markerWindow );   
+  });
+  //Close all informations windows
+  infoWindows.push( infowindow );
+  infoWindows.map( window => {
+    return window.close();
+  });
+
+  //Open a single information window
+  infowindow.open( map, markerWindow );    
 } 
 
 function initMap() {
@@ -80,10 +94,13 @@ function initMap() {
   map = new google.maps.Map(document.getElementById( 'map' ), mapOptions);
 
   //Add all markers in the map
-  const placesMarker = placesOfInterest.map(( place, idx ) => {
-    return addMarker( placesOfInterest[ idx ] );
+  placesOfInterest.map(( place, idx ) => {
+    return setTimeout(function() {
+      addMarker( placesOfInterest[ idx ] );
+    }, idx * 500);
   });
 }
+
 
 
 
