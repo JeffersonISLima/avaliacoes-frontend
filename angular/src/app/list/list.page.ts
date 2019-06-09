@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { legends } from '../names/nameslist';
 
 @Component({
   selector: 'app-list',
@@ -6,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage {
-  legends: Array<string> = [];
+   public legendsList: Array<string> = legends;
 
-  ngOnInit() {
-
-  }
+ngOnInit() {    
+  
+  }  
 }

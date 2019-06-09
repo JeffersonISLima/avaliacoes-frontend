@@ -2,8 +2,8 @@
   <ion-toolbar color="tertiary">
     <ion-title>Legends</ion-title>
   </ion-toolbar>
-</ion-header>
-
+</ion-header> 
+ 
 <ion-content padding>
   <ion-grid>
     <ion-row>
@@ -12,18 +12,13 @@
           <ion-list-header>
             <ion-label>List of Names</ion-label>
           </ion-list-header>
-          <ion-item lines="full">
-            <ion-label>
-              Jimmy Page
-            </ion-label>
-          </ion-item>
-          <ion-item lines="full">
-            <ion-label>
-              Mick Jagger
+          <ion-item  lines="full" *ngFor="let name of legendsList; let i = index">
+            <ion-label text-wrap>  
+              {{ i + ' - ' }}  {{ name }}
             </ion-label>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</ion-content> 
