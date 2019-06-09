@@ -25,15 +25,17 @@
     </nav>
   </header>
 
-  <section class="border">
-    <header>
+  <section name="First Session">
+    <header class="header-first-session">
       <h3> < VOLTAR </h3>
-      <h3> PROMOÇÃO SORTE GRANDE </h3>
+      <h3 id="txt"> PROMOÇÃO SORTE GRANDE </h3>
     </header>
-    <div class="border">
-      <h1> Participe da promoção e ganhe prêmios! </h1>
-      <input type="search" name="validate-code" class="validate-code">
+    <div class="validate-code-container">
+      <h1> Participe da promoção e <br><br> ganhe prêmios! </h1>
+      <span class="validate-span">
+      <input placeholder="Digite seu código" type="search" name="validate-code" class="validate-code-input">
       <button class="validate-button"> VALIDAR > </button>
+      </span>
       <div class="validate-feedback">
         <p> Código Inválido </p>
       </div>
