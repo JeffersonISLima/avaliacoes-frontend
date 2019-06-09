@@ -1,0 +1,90 @@
+/* REMOVER AO FINAL */
+.border {
+  border: 2px solid red;
+}
+
+/* Navbar */
+.header-navbar {
+  background-color: rgb(1, 1, 70);
+  display: flex;
+  color: white;
+  height: 85px;
+}
+
+.navbar-text {
+  padding-top: 2.5%;
+  font-size: 20px;
+}
+
+#txt-my-pharmacy {
+  padding-left: 2%; 
+  font-size: 15px;
+  padding-top: 0.5%;
+}
+
+#txt-pharmacy-model {
+  position: absolute;
+  padding-top: 2.5%;
+  padding-left: 2%;
+}
+
+#icon-information {
+  padding-left: 5%;
+}
+
+#status-open-close {
+  padding-top: 0; 
+  margin-top: 2.5%;
+  font-size: 13px;
+  margin-left: 1.5%; 
+}
+
+#status-open-close > div {
+  position: relative;
+  border: 2px solid white;
+  border-radius: 15px;
+  height: 30px;
+  padding: 7px;
+  width: 12em; 
+  background-color: rgba(3, 7, 190, 0.692);
+}
+
+#status-open-close > div > div{
+  border: 2px solid white;
+  border-radius: 15px;
+  height: 13px;
+  background-color: green;  
+  width: 1em; 
+}
+
+#status-open-close > div > p {
+  position: absolute;
+  top: -15%;
+  left: 25%;
+}
+
+#picture-user-container {
+ margin-left: 45%;
+ height: 50px;
+ margin-top: -0.5%;
+} 
+
+#picture-profile {
+height: 50px;
+border-radius: 50px;
+border: 2px solid rgb(192, 4, 230);
+}
+
+#name-user {
+  padding-left: 2%;
+}
+
+ #options {
+  padding-top: 3%;
+  padding-left: 2%; 
+  font-size: 40px;
+} 
+
+
+
+
