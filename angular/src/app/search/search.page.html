@@ -1,21 +1,30 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-buttons slot="end">
-
-    </ion-buttons>
-    <ion-searchbar 
-      color="danger" 
-      mode="ios" 
-      placeholder="Search for a legend"
-      animated 
-      (ionInput)="onSearch($event)"
-      (ionClear)="searchInput = '';"
-      [(ngModel)]="searchInput">
-
+    <ion-buttons slot="end"> </ion-buttons>
+    <ion-searchbar color="danger" mode="ios" placeholder="Search for a legend" animated (ionInput)="onSearch($event)"
+      (ionClear)="searchInput = '';" [(ngModel)]="searchInput">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <p>Showing <b>{{results.length}}</b> Results for: <b>{{searchInput}}</b></p><br />
+  <ng-template #firstTxt>
+    <h2 *ngIf="searchInput.length > 0"> Showing {{ results.length }} Results for: {{ searchInput }} </h2>
+  </ng-template>
+  <h2 *ngIf="searchInput === undefined; else firstTxt"> Showing 0 Results for: </h2>
+  <h2 *ngIf="searchInput.length === 0"> Showing 0 Results for: </h2>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" offset="3">
+        <ion-list>
+          <ion-item lines="full" *ngFor="let name of results; let i = index">
+            <ion-label text-wrap *ngIf='searchInput.length > 0'>
+              {{ i + ' -' }} {{ name }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
