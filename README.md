@@ -15,7 +15,10 @@ R: Quando removemos o parâmetro a aplicação deixa de renderizar o mapa, isto 
 
 ### d) Descreva pelo menos uma forma de como podemos fazer com que a aplicação funcione corretamente mesmo sem este parâmetro.
 R: Podemos colocar um evento onLoad chamando a função initMap() dentro da tag body, ex:
-    <body onLoad="initMap()"></body>
+    `<body onload="initMap()"></body>`
+
+  Outra maneira de fazer com que funcione, é chamar o evento onload no final da página index.js, ex:
+  `window.onload = initMap;`
 
 ### e) Explique para que servem as seguintes tags do index.html: 
   `<link rel="manifest" href="manifest.json">
@@ -26,13 +29,13 @@ R: Podemos colocar um evento onLoad chamando a função initMap() dentro da tag 
 R: Tag link: Está tag define um link entre o documento e um recurso externo, neste caso é um arquivo json.
   Tag meta: A tag meta fornece um resume do que será encontrado na página, isto auxilia os motores de busca a localizar e indexar a página, nesta tag pode ser fornecido as palavras chaves, a descrição de uma página, o autor do documento entre outros metadados.
     
-    <meta name="theme-color" content="">
+    `<meta name="theme-color" content="">`
       Especifica a cor do tema para o Chrome no Android.
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    `<meta name="apple-mobile-web-app-capable" content="yes">`
       Informa ao Apple IOS que a aplicação pode ter um ícone na área de trabalho do usuário e abre o navegador sem uma barra de menu.
 
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">`
+    `<meta name="apple-mobile-web-app-status-bar-style" content="black">`
       Define o estilo da barra de status, neste caso será preta.  
     
 

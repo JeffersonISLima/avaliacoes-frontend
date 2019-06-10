@@ -1,8 +1,3 @@
-/* REMOVER AO FINAL */
-.border {
-  border: 2px solid red;
-}
-
 /* Navbar */
 .header-navbar {
   background-color: rgb(1, 1, 70);
@@ -177,8 +172,7 @@ border: 2px solid rgb(192, 4, 230);
 }
 
 .card-green-bar {
-  color: green;
-  border: 2px solid;
+  border: 2px solid green;
   width: 20%;
 }
 
@@ -188,14 +182,25 @@ border: 2px solid rgb(192, 4, 230);
 
 .card-hr {
   width: 30%;
-  margin-left: 25%;
+  margin-left: 30%;
 }
 
 .card-border-participation {
+  position: relative;
   border: 1px solid white;
   padding-left: 4%;
   width: 93%;
   border-radius: 15px;
+}
+
+.card-border-participation-btn {
+  position: absolute;
+  left: 90%;
+  top: 25%;
+}
+
+.link-btn {
+  color: black;
 }
 
 .card-two-center-info {
@@ -204,6 +209,14 @@ border: 2px solid rgb(192, 4, 230);
 
 .card-two-center-info strong {
   border-bottom: 2px solid white;  
+}
+
+.card-space-icon-txt {
+  padding-left: 25px; 
+}
+
+.card-space-icon-txt2 {
+  padding-left: 50px; 
 }
 
 /* Footer */
