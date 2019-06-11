@@ -1,8 +1,15 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="end"> </ion-buttons>
-    <ion-searchbar color="danger" mode="ios" placeholder="Search for a legend" animated (ionInput)="onSearch($event)"
-      (ionClear)="searchInput = '';" [(ngModel)]="searchInput">
+    <ion-searchbar
+
+      color="danger"
+      mode="ios" 
+      placeholder="Search for a legend" 
+      animated (ionInput)="onSearch($event)"
+      (ionClear)="searchInput = '';"
+      [(ngModel)]="searchInput">
+    
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>

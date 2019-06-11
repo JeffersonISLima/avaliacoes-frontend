@@ -14,6 +14,15 @@
           <ion-list-header>
             <ion-label>List of Names</ion-label>
           </ion-list-header>
+          <ion-item class="parent" lines="full" *ngFor=" let name of legendsList; let i = index">            
+            <ion-label id="legendEdit" *ngIf="editing" > 
+            <input name="{{ name }}" placeholder="{{ name }}" (change)="handleChange($event)">             
+            <button class="child" (click)="toggleView()" margin padding>SAVE</button>
+            </ion-label>
+            <ion-label id="legendList" *ngIf="!editing" >
+             {{i + " - "}} {{ name }} <button class="child" (click)="toggleView()" margin padding>EDIT</button>
+            </ion-label>
+          </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
