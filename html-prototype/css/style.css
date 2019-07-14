@@ -115,6 +115,7 @@ border: 2px solid rgb(192, 4, 230);
   margin: 0;
   height: 35px;
   border: none;
+  outline: 0;
 }
 
 .validate-span {
@@ -132,6 +133,7 @@ border: 2px solid rgb(192, 4, 230);
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  outline: 0;
 }
 
 .validate-feedback {
@@ -176,8 +178,8 @@ border: 2px solid rgb(192, 4, 230);
   width: 20%;
 }
 
-.color-hidden {
-  color: white;
+.txt-hidden {
+  visibility: hidden;
 }
 
 .card-hr {
